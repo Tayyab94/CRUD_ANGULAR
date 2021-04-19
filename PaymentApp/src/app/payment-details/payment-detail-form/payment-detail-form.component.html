@@ -1,0 +1,53 @@
+<div class="row">
+    <h3 class="text-center text-info">Registration Form</h3>
+</div>
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="paymentDetailId" [value]='service.formData.paymentDetailId'>
+
+    <div class="form-group">
+        <label>Card Owner Name</label>
+
+        <input class="form-control form-control-lg" placeholder="Full Name" name="cardOwnerName"
+                        #cardOwnerName="ngModel" [(ngModel)]="service.formData.cardOwnerName"
+                        required [class.invalid]="cardOwnerName.invalid && cardOwnerName.touched">
+    </div>
+
+    <div class="form-group">
+        <label>Card Number</label>
+
+        <input class="form-control form-control-lg" placeholder="16 Digits Card Number" name="cardNumber"
+                        #cardNumber="ngModel" [(ngModel)]="service.formData.cardNumber" 
+                        required minlength="16" maxlength="16" [class.invalid]="cardNumber.invalid && cardNumber.touched">
+    </div>
+
+    <div class="row g-3">
+        <div class="col">
+            <div class="form-group">
+                <label>Card Security</label>
+        
+                <input class="form-control form-control-lg" placeholder="Security Code" name="securityCode"
+                                #securityCode="ngModel" [(ngModel)]="service.formData.securityCode"
+                                required minlength="3" maxlength="3"
+                                [class.invalid]="securityCode.invalid && securityCode.touched">
+            </div>
+        
+        </div>
+        <div class="col">
+         
+            <div class="form-group">
+                <label>Card Expiration</label>
+        
+                <input class="form-control form-control-lg" placeholder="MM/d" name="cardExpiration"
+                                #cardExpiration="ngModel" [(ngModel)]="service.formData.cardExpiration"
+                                required required minlength="5" maxlength="5"  [class.invalid]="cardExpiration.invalid && cardExpiration.touched">
+            </div>
+        </div>
+      </div>
+
+      <div class="form-group mt-2">
+          <button class="btn btn-info btn-lg btn-block" type="submit"
+           [disabled]="form.invalid">SUBMIT</button>
+      </div>
+  
+   
+</form>
